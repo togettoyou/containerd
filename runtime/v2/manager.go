@@ -430,6 +430,7 @@ func (m *TaskManager) Create(ctx context.Context, taskID string, opts runtime.Cr
 		return nil, err
 	}
 
+	log.G(ctx).WithField("code review", "togettoyou").Info("调用containerd-shim-runc-v2的ttrpc接口创建容器")
 	t, err := shimTask.Create(ctx, opts)
 	if err != nil {
 		// NOTE: ctx contains required namespace information.

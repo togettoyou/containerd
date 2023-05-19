@@ -68,6 +68,7 @@ func (b *binary) Start(ctx context.Context, opts *types.Any, onClose func()) (_ 
 	}
 	args = append(args, "start")
 
+	log.G(ctx).WithField("code review", "togettoyou").Info("启动containerd-shim-runc-v2二进制工具")
 	cmd, err := client.Command(
 		ctx,
 		&client.CommandConfig{
@@ -82,6 +83,7 @@ func (b *binary) Start(ctx context.Context, opts *types.Any, onClose func()) (_ 
 	if err != nil {
 		return nil, err
 	}
+	log.G(ctx).WithField("code review", "togettoyou").Info(cmd)
 	// Windows needs a namespace when openShimLog
 	ns, _ := namespaces.Namespace(ctx)
 	shimCtx, cancelShimLog := context.WithCancel(namespaces.WithNamespace(context.Background(), ns))
